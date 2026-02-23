@@ -9,6 +9,7 @@ export interface Patient {
   phone: string
   dateOfBirth: string
   gender: 'male' | 'female' | 'other'
+  bloodType?: string
   address: Address
   emergencyContact: EmergencyContact
   insuranceInfo?: InsuranceInfo
