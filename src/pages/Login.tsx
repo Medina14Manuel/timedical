@@ -1,9 +1,7 @@
-// ===== PÁGINA DE LOGIN TIMEDICAL =====
+// ===== PÁGINA DE LOGIN TIMEDICAL - DISEÑO SIMPLE =====
 
 import { useState } from 'react'
-import { Button, Card } from '../components/ui'
 import './Login.css'
-
 
 interface LoginProps {
   onLogin: () => void
@@ -31,61 +29,48 @@ export function Login({ onLogin }: LoginProps) {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-content">
-        <div className="login-header">
-          <div className="custom-logo">
-            <span className="logo-text">TI</span>
-            <span className="logo-suffix">Medical</span>
+    <div className="login-container-simple">
+      <div className="login-card">
+        <h2 className="login-title">TIMedical</h2>
+        <p className="login-subtitle">Sistema de Gestión Médica</p>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control-simple"
+              placeholder="Usuario"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              autoFocus
+              required
+            />
           </div>
-          <p>Sistema de Gestión Médica</p>
+          
+          <div className="form-group">
+            <input
+              type="password"
+              className="form-control-simple"
+              placeholder="Contraseña"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            className="btn-login-simple"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+          </button>
+        </form>
+        
+        <div className="login-footer">
+          <span>¿No tienes cuenta? </span>
+          <a href="#" className="register-link">Regístrate aquí</a>
         </div>
-
-        <Card title="Iniciar Sesión">
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="form-group">
-              <label htmlFor="email">Usuario</label>
-              <input
-                id="email"
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Ingresa tu usuario"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="password">Contraseña</label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-              />
-            </div>
-
-            <Button
-              type="submit"
-              variant="primary"
-              size="large"
-              disabled={isLoading}
-              className="login-button"
-            >
-              {isLoading ? 'Ingresando...' : 'Ingresar'}
-            </Button>
-          </form>
-
-          <div className="login-footer">
-            <p className="demo-credentials">
-              <strong>Credenciales de prueba:</strong><br />
-              Usuario: cualquier usuario<br />
-              Contraseña: cualquier contraseña
-            </p>
-          </div>
-        </Card>
       </div>
     </div>
   )
